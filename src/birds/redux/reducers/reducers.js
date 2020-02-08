@@ -1,5 +1,5 @@
 import {
-  LOAD_BIRDS, SELECT_QUESTION, SELECT_CATEGORY, SCORE_UP, SET_SELECTED_BIRD,
+  LOAD_BIRDS, SELECT_QUESTION, SELECT_CATEGORY, SCORE_UP, SET_SELECTED_BIRD, NEXT_LEVEL
 } from '../actions/actions';
 import birdsData from '../../birds';
 
@@ -62,14 +62,14 @@ function birdsRootReducer(state = initialState, action) {
       };
     case SCORE_UP:
       selectedBird = birdsData[state.birdCategory].filter(x => x.name === action.name)[0];
-      nextCategory = state.birdCategory + 1;
+
       console.log('selectedBird', selectedBird)
       return {
         birds: [
           ...birdsArray,
         ],
-        birdCategory: nextCategory,
-        secretBird: birdsArray[nextCategory][Math.floor(Math.random() * 6)],
+        birdCategory: state.birdCategory,
+        secretBird: state.secretBird,
         score: state.score + 1,
         selectedBird,
         attemptCount: state.attemptCount,
@@ -86,8 +86,22 @@ function birdsRootReducer(state = initialState, action) {
         secretBird: state.secretBird,
         score: state.score,
         selectedBird,
-        attemptCount: state.attemptCount,
-        guessed: state.guessed,
+        attemptCount: state.attemptCount += 1,
+        guessed: false,
+      };
+    case NEXT_LEVEL:
+      nextCategory = state.birdCategory + 1;
+
+      return {
+        birds: [
+          ...birdsArray,
+        ],
+        birdCategory: nextCategory,
+        secretBird: birdsArray[nextCategory][Math.floor(Math.random() * 6)],
+        score: state.score,
+        selectedBird,
+        attemptCount: 0,
+        guessed: false,
       };
     default:
       return state;
