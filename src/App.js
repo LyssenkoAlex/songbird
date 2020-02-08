@@ -4,6 +4,7 @@ import BirdCategories from './birds/BirdCategories';
 import SecretBird from './birds/SecretBird';
 import ScoreBoard from './birds/ScoreBoard';
 import BirdInfo from './birds/BirdInfo';
+import NextLevel from './birds/NextLevel';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BirdCategories />
       <SecretBird />
       <Game />
+      <NextLevel />
       <BirdInfo />
     </React.Fragment>
   );

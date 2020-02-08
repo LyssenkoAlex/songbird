@@ -11,6 +11,9 @@ const initialState = {
   score: 0,
   secretBird: birdsData[0][randomBird],
   selectedBird: birdsData[0][0],
+  attemptCount: 0,
+  guessed: false,
+
 };
 
 function birdsRootReducer(state = initialState, action) {
@@ -30,6 +33,8 @@ function birdsRootReducer(state = initialState, action) {
         birdCategory: 0,
         score: state.score,
         selectedBird: state.selectedBird,
+        attemptCount: state.attemptCount,
+        guessed: state.guessed,
       };
     case SELECT_QUESTION:
       return {
@@ -39,6 +44,8 @@ function birdsRootReducer(state = initialState, action) {
         birdCategory: state.birdCategory,
         score: state.score,
         selectedBird: state.selectedBird,
+        attemptCount: state.attemptCount,
+        guessed: state.guessed,
       };
     case SELECT_CATEGORY:
 
@@ -50,6 +57,8 @@ function birdsRootReducer(state = initialState, action) {
         secretBird: { group: action.id, id: 1 },
         score: state.score,
         selectedBird: state.selectedBird,
+        attemptCount: state.attemptCount,
+        guessed: state.guessed,
       };
     case SCORE_UP:
       selectedBird = birdsData[state.birdCategory].filter(x => x.name === action.name)[0];
@@ -63,6 +72,8 @@ function birdsRootReducer(state = initialState, action) {
         secretBird: birdsArray[nextCategory][Math.floor(Math.random() * 6)],
         score: state.score + 1,
         selectedBird,
+        attemptCount: state.attemptCount,
+        guessed: true,
       };
     case SET_SELECTED_BIRD:
 
@@ -75,6 +86,8 @@ function birdsRootReducer(state = initialState, action) {
         secretBird: state.secretBird,
         score: state.score,
         selectedBird,
+        attemptCount: state.attemptCount,
+        guessed: state.guessed,
       };
     default:
       return state;
