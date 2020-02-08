@@ -9,7 +9,6 @@ const birdsCategory = [{ id: 0, category: 'Разминка' },
 
 class BirdCategories extends Component {
     setCategory = (index) => {
-      console.log('index:', index)
       this.props.selectCategory(index);
     };
 

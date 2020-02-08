@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class SecretBird extends Component {
   render() {
-    const secretBird = this.props.birds[this.props.secretBird.group][this.props.secretBird.id - 1];
+    const secretBird = this.props.secretBird;
 
     return (
       <React.Fragment>

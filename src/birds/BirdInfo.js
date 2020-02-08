@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class BirdInfo extends Component{
+class BirdInfo extends Component {
   render() {
     const selectedBird = this.props.selectedBird;
 

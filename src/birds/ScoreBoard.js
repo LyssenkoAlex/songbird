@@ -15,8 +15,6 @@ Score:
 }
 
 const mapStateToProps = state => ({
-  birds: state.birds,
-  birdCategory: state.birdCategory,
   score: state.score,
 });
 

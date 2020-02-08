@@ -13,10 +13,10 @@ export function selectCategory(id) {
   return { type: SELECT_CATEGORY, id };
 }
 
-export function setSelectedBird({ category, id }) {
-  return { type: SET_SELECTED_BIRD, category, id }
+export function setSelectedBird( name ) {
+  return { type: SET_SELECTED_BIRD, name }
 }
 
-export function scoreUp() {
-  return { type: SCORE_UP };
+export function scoreUp(name) {
+  return { type: SCORE_UP, name };
 }

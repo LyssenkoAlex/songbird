@@ -5,10 +5,11 @@ import { setSelectedBird, scoreUp } from './redux/actions/actions';
 
 class Game extends Component {
     checkAnswer = (selection) => {
-      if (this.props.secretBird.id === selection.number) {
-        this.props.scoreUp()
+      if (this.props.secretBird.name === selection) {
+        this.props.scoreUp(selection)
+      } else {
+        this.props.setSelectedBird(selection)
       }
-      this.props.setSelectedBird({ category: selection.group, id: selection.number })
     };
 
 
@@ -17,11 +18,12 @@ class Game extends Component {
       const birdsItems = this.props.birds[this.props.birdCategory].map((bird, index) => (
 
         <li key={index}>
-          <span onClick={() => this.checkAnswer({ group: this.props.birdCategory, number: bird.id })}>
+          <span onClick={() => this.checkAnswer(bird.name)}>
             {bird.name}
           </span>
         </li>
       ));
+
 
       return (
         <React.Fragment>

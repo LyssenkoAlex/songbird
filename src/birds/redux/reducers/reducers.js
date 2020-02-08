@@ -3,18 +3,23 @@ import {
 } from '../actions/actions';
 import birdsData from '../../birds';
 
+const randomBird = Math.floor(Math.random() * 6);
 
 const initialState = {
   birds: birdsData,
   birdCategory: 0,
   score: 0,
-  secretBird: { group: 0, id: 1 },
+  secretBird: birdsData[0][randomBird],
   selectedBird: birdsData[0][0],
 };
 
 function birdsRootReducer(state = initialState, action) {
   const birdsArray = birdsData;
-  console.log('action: ', action)
+  let selectedBird = '';
+  let nextCategory = '';
+
+  console.log('action: ', action);
+
   switch (action.type) {
     case LOAD_BIRDS:
 
@@ -47,25 +52,29 @@ function birdsRootReducer(state = initialState, action) {
         selectedBird: state.selectedBird,
       };
     case SCORE_UP:
+      selectedBird = birdsData[state.birdCategory].filter(x => x.name === action.name)[0];
+      nextCategory = state.birdCategory + 1;
+      console.log('selectedBird', selectedBird)
       return {
         birds: [
           ...birdsArray,
         ],
-        birdCategory: state.birdCategory,
-        secretBird: { group: state.secretBird.group, id: state.secretBird.id + 1 },
+        birdCategory: nextCategory,
+        secretBird: birdsArray[nextCategory][Math.floor(Math.random() * 6)],
         score: state.score + 1,
-        selectedBird: state.selectedBird,
+        selectedBird,
       };
     case SET_SELECTED_BIRD:
 
+      selectedBird = birdsData[state.birdCategory].filter(x => x.name === action.name)[0];
       return {
         birds: [
           ...birdsArray,
         ],
         birdCategory: state.birdCategory,
-        secretBird: { group: state.secretBird.group, id: state.secretBird.id + 1 },
-        score: state.score + 1,
-        selectedBird: birdsData[action.category][action.id],
+        secretBird: state.secretBird,
+        score: state.score,
+        selectedBird,
       };
     default:
       return state;
