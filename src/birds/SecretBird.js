@@ -8,9 +8,21 @@ class SecretBird extends Component {
 
     return (
       <React.Fragment>
-        <h1>{secretBird.name}</h1>
-        <p>{secretBird.audio}</p>
-        <p>{secretBird.image}</p>
+        <div className="random-bird jumbotron rounded">
+          <img className="bird-image" src={secretBird.image} />
+          <div>
+            <ul className="list-group list-group-flush">
+              <h3>{secretBird.name}</h3>
+              <li className="list-group-item">
+                <div>
+                  <audio src={secretBird.audio} ref="audio_tag" controls autoPlay />
+
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </React.Fragment>
     )
   }

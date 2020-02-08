@@ -13,17 +13,25 @@ class BirdCategories extends Component {
     };
 
     render() {
+      const playerScore = this.props.score;
+
       const birdsCategories = birdsCategory.map(item => (
-        <li key={item.id}>
-          <span onClick={() => this.setCategory(item.id)}>
+        <li className="page-item" key={item.id}>
+          <a className="page-link" onClick={() => this.setCategory(item.id)}>
             {item.category}
-          </span>
+          </a>
 
         </li>
       ));
 
       return (
-        <ul>{birdsCategories}</ul>
+        <div className="header">
+          <h5>
+Score
+            {playerScore}
+          </h5>
+          <ul className="pagination">{birdsCategories}</ul>
+        </div>
       )
     }
 }
@@ -31,6 +39,7 @@ class BirdCategories extends Component {
 const mapStateToProps = state => ({
   birds: state.birds,
   birdCategory: state.birdCategory,
+  score: state.score,
 });
 
 const mapDispatchToProps = {
