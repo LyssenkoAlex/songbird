@@ -50,7 +50,7 @@ class Game extends Component {
                       <span>{selectedBird.species}</span>
                     </li>
                     <li className="list-group-item">
-                      <audio src={selectedBird.audio} controls autoPlay />
+                      <audio src={selectedBird.audio} controls autoPlay className='birdAudion'/>
                     </li>
                   </ul>
                 </div>

@@ -1,5 +1,3 @@
-import './bird_caregories.scss'
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectCategory } from './redux/actions/actions';
