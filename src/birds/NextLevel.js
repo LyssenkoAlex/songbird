@@ -21,10 +21,6 @@ class NextLevel extends Component {
 
 
 const mapStateToProps = state => ({
-  birds: state.birds,
-  birdCategory: state.birdCategory,
-  secretBird: state.secretBird,
-  selectedBird: state.selectedBird,
   guessed: state.guessed,
 });
 

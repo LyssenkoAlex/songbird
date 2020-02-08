@@ -5,6 +5,7 @@ import SecretBird from './birds/SecretBird';
 import ScoreBoard from './birds/ScoreBoard';
 import BirdInfo from './birds/BirdInfo';
 import NextLevel from './birds/NextLevel';
+import GameOver from './GameOver';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Game />
       <NextLevel />
       <BirdInfo />
+      <GameOver />
     </React.Fragment>
   );
 }

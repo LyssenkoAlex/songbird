@@ -1,5 +1,5 @@
 import {
-  LOAD_BIRDS, SELECT_QUESTION, SELECT_CATEGORY, SCORE_UP, SET_SELECTED_BIRD, NEXT_LEVEL
+  LOAD_BIRDS, SELECT_QUESTION, SELECT_CATEGORY, SCORE_UP, SET_SELECTED_BIRD, NEXT_LEVEL,
 } from '../actions/actions';
 import birdsData from '../../birds';
 
@@ -13,6 +13,7 @@ const initialState = {
   selectedBird: birdsData[0][0],
   attemptCount: 0,
   guessed: false,
+  gameOver: false,
 
 };
 
@@ -63,6 +64,7 @@ function birdsRootReducer(state = initialState, action) {
     case SCORE_UP:
       selectedBird = birdsData[state.birdCategory].filter(x => x.name === action.name)[0];
 
+
       console.log('selectedBird', selectedBird)
       return {
         birds: [
@@ -70,7 +72,7 @@ function birdsRootReducer(state = initialState, action) {
         ],
         birdCategory: state.birdCategory,
         secretBird: state.secretBird,
-        score: state.score + 1,
+        score: state.score + 5 - state.attemptCount,
         selectedBird,
         attemptCount: state.attemptCount,
         guessed: true,
@@ -90,8 +92,12 @@ function birdsRootReducer(state = initialState, action) {
         guessed: false,
       };
     case NEXT_LEVEL:
-      nextCategory = state.birdCategory + 1;
 
+      nextCategory = state.birdCategory + 1;
+      if (state.birds.length === nextCategory) {
+        state.gameOver = true;
+        nextCategory = 0;
+      }
       return {
         birds: [
           ...birdsArray,
@@ -102,6 +108,7 @@ function birdsRootReducer(state = initialState, action) {
         selectedBird,
         attemptCount: 0,
         guessed: false,
+        gameOver: state.gameOver,
       };
     default:
       return state;
