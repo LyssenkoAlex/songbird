@@ -13,17 +13,17 @@ class Game extends Component {
     };
 
     nextLevel = () => {
-      console.log('next le el')
       this.props.nextLevel();
-    }
+    };
 
 
     render() {
+      console.log('group:', this.props.birdGroup)
       const selectedBird = this.props.selectedBird;
-      const title = 'Guess bird';
-      const birdsItems = this.props.birds[this.props.birdCategory].map((bird, index) => (
 
-        <li className="list-group-item default" key={index} onClick={() => this.checkAnswer(bird.name)}>
+      const birdsItems = this.props.birdGroup.map((bird, index) => (
+
+        <li className={`list-group-item default ${bird.style}`} key={index} onClick={() => this.checkAnswer(bird.name)}>
           <span className="li-btn" />
           {bird.name}
         </li>
@@ -50,7 +50,7 @@ class Game extends Component {
                       <span>{selectedBird.species}</span>
                     </li>
                     <li className="list-group-item">
-                      <audio src={selectedBird.audio} controls autoPlay className='birdAudion'/>
+                      <audio src={selectedBird.audio} controls autoPlay className="birdAudion" />
                     </li>
                   </ul>
                 </div>
@@ -61,7 +61,7 @@ class Game extends Component {
 
               </div>
             </div>
-            <button onClick={this.nextLevel} className='btn' type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
+            <button onClick={this.nextLevel} className="btn" type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
           </div>
         </React.Fragment>
       )
@@ -74,6 +74,7 @@ const mapStateToProps = state => ({
   secretBird: state.secretBird,
   selectedBird: state.selectedBird,
   guessed: state.guessed,
+  birdGroup: state.birdGroup,
 });
 
 

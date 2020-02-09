@@ -305,3 +305,43 @@ img {
 .birdAudion {
   width:100%;
 }
+
+.error .li-btn {
+  background-color: #d62c1a;
+}
+
+.success .li-btn {
+  background-color: #00bc8c;
+}
+
+.btn {
+  width: 100%;
+  margin: 25px 15px;
+  background-color: #303030;
+  border: 1px solid #444;
+  color: #fff!important;
+  cursor: auto;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.btn, .btn:focus {
+  box-shadow: none;
+}
+.btn-next {
+  background-color: #00bc8c;
+  cursor: pointer;
+}
+.btn:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.btn:active {
+  border: 1px solid #666!important;
+}
+.btn-next:hover {
+  background-color: #00efb2;
+}
+
+.item-list .list-group-item:hover, .li-btn {
+  background-color: #444;
+}
