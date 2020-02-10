@@ -17,18 +17,25 @@ const initialState = {
   birdGroup: birdsData[0],
 };
 
+
 function birdsRootReducer(state = initialState, action) {
   const birdsArray = birdsData;
   let selectedBird = '';
   let nextCategory = '';
+  let luckykBird = {};
+
 
   console.log('action: ', action);
 
   switch (action.type) {
     case SCORE_UP:
-      state.birdGroup.filter(x => x.name === action.name)[0].style = 'success';
-      state.birdGroup.filter(x => x.name === action.name)[0].answered = true;
+      luckykBird = state.birdGroup.filter(x => x.name === action.name)[0];
+      luckykBird.style = 'success';
 
+      if (luckykBird.answered === undefined || luckykBird.answered === null) {
+        luckykBird.answered = true;
+        state.score = state.score + 5 - state.attemptCount
+      }
 
       return {
         birds: [
@@ -36,7 +43,7 @@ function birdsRootReducer(state = initialState, action) {
         ],
         birdCategory: state.birdCategory,
         secretBird: state.secretBird,
-        score: state.score + 5 - state.attemptCount,
+        score: state.score,
         selectedBird: birdsData[state.birdCategory].filter(x => x.name === action.name)[0],
         attemptCount: state.attemptCount,
         guessed: true,
@@ -55,7 +62,7 @@ function birdsRootReducer(state = initialState, action) {
         score: state.score,
         selectedBird,
         attemptCount: state.attemptCount += 1,
-        guessed: false,
+        guessed: state.guessed,
         birdGroup: [...state.birdGroup],
 
       };
