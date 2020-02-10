@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectCategory } from './redux/actions/actions';
+import PropTypes from 'prop-types';
 
 const birdsCategory = [{ id: 0, category: 'Разминка' },
   { id: 1, category: 'Воробьиные' }, { id: 2, category: 'Лесные птицы' }, { id: 3, category: 'Певчие птицы' }, { id: 4, category: 'Хищные птицы' }, { id: 5, category: 'Морские пртицы' }];
 
 class BirdCategories extends Component {
-    setCategory = (index) => {
-      this.props.selectCategory(index);
-    };
+  render() {
+    const playerScore = `Score: ${this.props.score}`;
 
-    render() {
-      const playerScore = this.props.score;
 
-      const birdsCategories = birdsCategory.map(item => (
-        <li className="page-item" key={item.id}>
-          <a className="page-link" onClick={() => this.setCategory(item.id)}>
-            {item.category}
-          </a>
+    const birdsCategories = birdsCategory.map(item => (
+      <li className={this.props.birdCategory === item.id ? 'page-item active' : 'page-item'} key={item.id}>
+        <a className="page-link">
+          {item.category}
+        </a>
 
-        </li>
-      ));
+      </li>
+    ));
 
-      return (
-        <div className="header">
-          <h5>
-Score
-            {playerScore}
-          </h5>
-          <ul className="pagination">{birdsCategories}</ul>
+    return (
+      <div className="header d-flex">
+        <div className="top-panel d-flex">
+          <div className="logo" />
+          <h5>{playerScore}</h5>
         </div>
-      )
-    }
+        <ul className="pagination">{birdsCategories}</ul>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
@@ -40,8 +37,10 @@ const mapStateToProps = state => ({
   score: state.score,
 });
 
-const mapDispatchToProps = {
-  selectCategory,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(BirdCategories);
+export default connect(mapStateToProps)(BirdCategories);
+
+BirdCategories.propTypes = {
+  birdCategory: PropTypes.arrayOf(PropTypes.any).isRequired,
+  score: PropTypes.number.isRequired,
+};

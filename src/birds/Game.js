@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { setSelectedBird, scoreUp, nextLevel } from './redux/actions/actions';
 
 
@@ -16,19 +17,16 @@ class Game extends Component {
       this.props.nextLevel();
     };
 
-
     render() {
-      console.log('group:', this.props.birdGroup)
       const selectedBird = this.props.selectedBird;
+      const buttonClassname = !this.props.guessed ? 'btn' : 'btn btn-next';
+      const birdsItems = this.props.birdGroup.map(bird => (
 
-      const birdsItems = this.props.birdGroup.map((bird, index) => (
-
-        <li className={`list-group-item default ${bird.style}`} key={index} onClick={() => this.checkAnswer(bird.name)}>
+        <li className={`list-group-item default ${bird.style}`} key={bird.id} onClick={() => this.checkAnswer(bird.name)}>
           <span className="li-btn" />
           {bird.name}
         </li>
       ));
-
 
       return (
         <React.Fragment>
@@ -58,10 +56,9 @@ class Game extends Component {
                   {selectedBird.description}
                 </span>
 
-
               </div>
             </div>
-            <button onClick={this.nextLevel} className="btn" type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
+            <button onClick={this.nextLevel} className={buttonClassname} type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
           </div>
         </React.Fragment>
       )
@@ -86,3 +83,13 @@ const mapDispatchToProps = {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
+Game.propTypes = {
+  birdGroup: PropTypes.arrayOf(PropTypes.any).isRequired,
+  guessed: PropTypes.bool.isRequired,
+  selectedBird: PropTypes.objectOf(PropTypes.any).isRequired,
+  setSelectedBird: PropTypes.func.isRequired,
+  scoreUp: PropTypes.func.isRequired,
+  nextLevel: PropTypes.func.isRequired,
+  secretBird: PropTypes.objectOf(PropTypes.any).isRequired,
+};

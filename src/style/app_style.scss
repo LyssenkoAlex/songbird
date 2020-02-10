@@ -1,3 +1,28 @@
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1140px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -21,14 +46,42 @@ body {
   margin-left: auto;
 }
 
-.container {
-  max-width: 1140px;
+h5, .h5 {
+  font-size: 1.17rem;
 }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+
 
 .header {
   margin-top: .5rem;
   flex-direction: column;
 }
+
+.header .logo {
+  background-image: url(/src/static/images/logo.svg);
+  width: 200px;
+  height: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.top-panel {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
+
 
 .pagination {
   display: flex;
@@ -303,7 +356,7 @@ img {
 }
 
 .birdAudion {
-  width:100%;
+  width: 100%;
 }
 
 .error .li-btn {
@@ -319,25 +372,30 @@ img {
   margin: 25px 15px;
   background-color: #303030;
   border: 1px solid #444;
-  color: #fff!important;
+  color: #fff !important;
   cursor: auto;
   -webkit-transition: .3s;
   transition: .3s;
 }
+
 .btn, .btn:focus {
   box-shadow: none;
 }
+
 .btn-next {
   background-color: #00bc8c;
   cursor: pointer;
 }
+
 .btn:hover {
   color: #fff;
   text-decoration: none;
 }
+
 .btn:active {
-  border: 1px solid #666!important;
+  border: 1px solid #666 !important;
 }
+
 .btn-next:hover {
   background-color: #00efb2;
 }
@@ -345,3 +403,44 @@ img {
 .item-list .list-group-item:hover, .li-btn {
   background-color: #444;
 }
+
+.page-item.active .page-link {
+  background-color: #00bc8c;
+  border-color: #007c5d;
+}
+
+
+.lead {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.display-3 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+
