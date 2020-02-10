@@ -41,6 +41,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(BirdCategories);
 
 BirdCategories.propTypes = {
-  birdCategory: PropTypes.arrayOf(PropTypes.any).isRequired,
+  birdCategory: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
 };

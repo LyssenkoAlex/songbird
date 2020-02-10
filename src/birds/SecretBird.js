@@ -15,11 +15,12 @@ class SecretBird extends Component {
       ({ image, name } = { image: fakeImage, name: '***' });
     }
     const secretBird = this.props.secretBird;
+    const visibility = !this.props.gameOver ? '' : 'none';
 
 
     return (
       <React.Fragment>
-        <div className="random-bird jumbotron rounded">
+        <div className="random-bird jumbotron rounded" style={{ display: visibility }}>
           <img className="bird-image" src={image} alt={name} />
           <div>
             <ul className="list-group list-group-flush">
@@ -44,6 +45,7 @@ const mapStateToProps = state => ({
   birdCategory: state.birdCategory,
   secretBird: state.secretBird,
   guessed: state.guessed,
+  gameOver: state.gameOver,
 });
 
 
@@ -53,4 +55,3 @@ SecretBird.propTypes = {
   guessed: PropTypes.bool.isRequired,
   secretBird: PropTypes.objectOf(PropTypes.any).isRequired,
 };
-

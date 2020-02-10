@@ -20,6 +20,8 @@ class Game extends Component {
     render() {
       const selectedBird = this.props.selectedBird;
       const buttonClassname = !this.props.guessed ? 'btn' : 'btn btn-next';
+      const visibility = !this.props.gameOver ? '' : 'none';
+
       const birdsItems = this.props.birdGroup.map(bird => (
 
         <li className={`list-group-item default ${bird.style}`} key={bird.id} onClick={() => this.checkAnswer(bird.name)}>
@@ -30,7 +32,7 @@ class Game extends Component {
 
       return (
         <React.Fragment>
-          <div className="row mb2">
+          <div className="row mb2" style={{ display: visibility }}>
             <div className="col-md-6">
               <ul className="item-list list-group">
                 {birdsItems}
@@ -72,6 +74,7 @@ const mapStateToProps = state => ({
   selectedBird: state.selectedBird,
   guessed: state.guessed,
   birdGroup: state.birdGroup,
+  gameOver: state.gameOver,
 });
 
 

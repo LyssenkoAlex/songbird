@@ -1,12 +1,12 @@
 import {
-  SCORE_UP, SET_SELECTED_BIRD, NEXT_LEVEL,
+  SCORE_UP, SET_SELECTED_BIRD, NEXT_LEVEL, START_AGAIN,
 } from '../actions/actions';
 import birdsData from '../../birds';
 
 const randomBird = Math.floor(Math.random() * 6);
 
 const initialState = {
-  birds: birdsData,
+  birds: [...birdsData],
   birdCategory: 0,
   score: 0,
   secretBird: birdsData[0][randomBird],
@@ -19,7 +19,7 @@ const initialState = {
 
 
 function birdsRootReducer(state = initialState, action) {
-  const birdsArray = birdsData;
+  const birdsArray = [...birdsData];
   let selectedBird = '';
   let nextCategory = '';
   let luckykBird = {};
@@ -85,6 +85,27 @@ function birdsRootReducer(state = initialState, action) {
         guessed: false,
         gameOver: state.gameOver,
         birdGroup: [...birdsArray[nextCategory]],
+      };
+
+    case START_AGAIN:
+
+      birdsData.forEach(x => x.forEach((y) => {
+        delete y.style;
+        delete y.answered;
+      }));
+      
+      return {
+        birds: {
+          ...birdsData,
+        },
+        birdCategory: 0,
+        score: 0,
+        secretBird: birdsData[0][randomBird],
+        selectedBird: birdsData[0][0],
+        attemptCount: 0,
+        gameOver: false,
+        birdGroup: [...birdsData[0]],
+        guessed: false,
       };
     default:
       return state;
