@@ -48,6 +48,7 @@ function birdsRootReducer(state = initialState, action) {
         attemptCount: state.attemptCount,
         guessed: true,
         birdGroup: [...state.birdGroup],
+        gameOver: state.gameOver,
       };
     case SET_SELECTED_BIRD:
 
@@ -64,7 +65,7 @@ function birdsRootReducer(state = initialState, action) {
         attemptCount: state.attemptCount += 1,
         guessed: state.guessed,
         birdGroup: [...state.birdGroup],
-
+        gameOver: state.gameOver,
       };
     case NEXT_LEVEL:
 
@@ -93,7 +94,7 @@ function birdsRootReducer(state = initialState, action) {
         delete y.style;
         delete y.answered;
       }));
-      
+
       return {
         birds: {
           ...birdsData,

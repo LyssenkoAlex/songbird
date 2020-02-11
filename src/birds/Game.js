@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setSelectedBird, scoreUp, nextLevel } from './redux/actions/actions';
-
+import okSound from '../static/sounds/ok.wav'
+import errorSound from '../static/sounds/error.wav'
+import sound from '../utils';
 
 class Game extends Component {
+
     checkAnswer = (selection) => {
       if (this.props.secretBird.name === selection) {
+        const secretPlayer = document.getElementById('secretPlayer');
+        secretPlayer.pause();
+        sound(okSound);
         this.props.scoreUp(selection)
       } else {
-        this.props.setSelectedBird(selection)
+        this.props.setSelectedBird(selection);
+        sound(errorSound);
       }
     };
 
-    nextLevel = () => {
-      this.props.nextLevel();
-    };
 
     render() {
+      console.log('this.props.secretBird.name: ', this.props.secretBird.name)
       const selectedBird = this.props.selectedBird;
       const buttonClassname = !this.props.guessed ? 'btn' : 'btn btn-next';
       const visibility = !this.props.gameOver ? '' : 'none';
@@ -50,7 +55,7 @@ class Game extends Component {
                       <span>{selectedBird.species}</span>
                     </li>
                     <li className="list-group-item">
-                      <audio src={selectedBird.audio} controls autoPlay className="birdAudion" />
+                      <audio src={selectedBird.audio} controls autoPlay={false} className="birdAudion" />
                     </li>
                   </ul>
                 </div>
@@ -60,7 +65,7 @@ class Game extends Component {
 
               </div>
             </div>
-            <button onClick={this.nextLevel} className={buttonClassname} type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
+            <button onClick={this.props.nextLevel} className={buttonClassname} type="button" value="Next Level" disabled={!this.props.guessed}>Next level</button>
           </div>
         </React.Fragment>
       )

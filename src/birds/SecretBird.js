@@ -27,7 +27,7 @@ class SecretBird extends Component {
               <h3>{name}</h3>
               <li className="list-group-item">
                 <div>
-                  <audio src={secretBird.audio} ref="audio_tag" controls autoPlay />
+                  <audio src={secretBird.audio} ref="audio_tag" controls autoPlay id="secretPlayer" />
 
                 </div>
               </li>

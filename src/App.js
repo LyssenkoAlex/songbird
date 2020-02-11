@@ -2,7 +2,7 @@ import React from 'react';
 import Game from './birds/Game';
 import BirdCategories from './birds/BirdCategories';
 import SecretBird from './birds/SecretBird';
-import GameOver from './GameOver';
+import GameOver from './birds/GameOver';
 import './style/app_style.scss';
 
 
