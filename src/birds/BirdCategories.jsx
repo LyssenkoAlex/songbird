@@ -12,9 +12,9 @@ class BirdCategories extends Component {
 
     const birdsCategories = birdsCategory.map(item => (
       <li className={this.props.birdCategory === item.id ? 'page-item active' : 'page-item'} key={item.id}>
-        <a className="page-link">
+        <span className="page-link">
           {item.category}
-        </a>
+        </span>
 
       </li>
     ));

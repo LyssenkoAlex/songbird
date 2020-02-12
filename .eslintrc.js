@@ -4,9 +4,10 @@ module.exports = {
         es6: true,
     },
     "extends": [
-        "react-app",
-        "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended",
     ],
+    parser: "babel-eslint",
     globals: {
         Atomics: 'readonly',
         SharedArrayBuffer: 'readonly',
@@ -18,7 +19,6 @@ module.exports = {
     rules: {
         "semi": 0,
         'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         'max-len': ["error", { "code": 250 }],
         "react/destructuring-assignment": ["warn", "always", { "ignoreClassFields": true }],
         "react/prefer-stateless-function": "off"

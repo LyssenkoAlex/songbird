@@ -20,12 +20,11 @@ const initialState = {
 
 function birdsRootReducer(state = initialState, action) {
   const birdsArray = [...birdsData];
-  let selectedBird = '';
+  let selectedBird = {};
   let nextCategory = '';
   let luckykBird = {};
 
 
-  console.log('action: ', action);
 
   switch (action.type) {
     case SCORE_UP:

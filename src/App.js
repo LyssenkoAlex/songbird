@@ -1,9 +1,8 @@
 import React from 'react';
-import Game from './birds/Game';
-import BirdCategories from './birds/BirdCategories';
-import SecretBird from './birds/SecretBird';
-import GameOver from './birds/GameOver';
-import './style/app_style.scss';
+import Game from './birds/Game.jsx';
+import BirdCategories from './birds/BirdCategories.jsx';
+import SecretBird from './birds/SecretBird.jsx';
+import GameOver from './birds/GameOver.jsx';
 
 
 function App() {

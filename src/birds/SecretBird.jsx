@@ -54,4 +54,5 @@ export default connect(mapStateToProps, null)(SecretBird);
 SecretBird.propTypes = {
   guessed: PropTypes.bool.isRequired,
   secretBird: PropTypes.objectOf(PropTypes.any).isRequired,
+  gameOver:PropTypes.bool.isRequired
 };

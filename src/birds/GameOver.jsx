@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { startAgain } from './redux/actions/actions';
+import cert from '../static/cert/Outstanding_achievement.pdf'
 
 
 class GameOver extends Component {
@@ -21,7 +22,7 @@ class GameOver extends Component {
           <h1 className="display-3 text-center">Поздравляем! ВЫ АБСОЛЮТНЫЙ ЧЕМПИОН!</h1>
           <p className="lead text-center">Вы набрали 30 из 30 возможных балллов!</p>
           <button className="btn btn-next btn-game-over" type="button" onClick={this.props.startAgain}>Попробовать еще раз!</button>
-          <a href="../static/cert/Outstanding_achievement.pdf">Получить награду!</a>
+          <a href={cert} target='_blank' rel='noopener noreferrer'>Получить награду!</a>
         </div>
       </React.Fragment>
     )

@@ -22,10 +22,14 @@ class Game extends Component {
 
 
     render() {
-      console.log('this.props.secretBird.name: ', this.props.secretBird.name)
+      const info = [ 'background: green', 'color: white', 'display: block', 'text-align: center'].join(';');
+      // eslint-disable-next-line no-console
+      console.info(`%c You should choose: ${this.props.secretBird.name}`, info);
+
       const selectedBird = this.props.selectedBird;
       const buttonClassname = !this.props.guessed ? 'btn' : 'btn btn-next';
       const visibility = !this.props.gameOver ? '' : 'none';
+      const displayInstruction =  this.props.attemptCount === 0 ;
 
       const birdsItems = this.props.birdGroup.map(bird => (
 
@@ -45,7 +49,8 @@ class Game extends Component {
             </div>
             <div className="col-md-6">
               <div className="bird-details card">
-                <div className="card-body">
+                <div className='alert alert-warning' style={{display:displayInstruction ? '' : 'none'}}><strong>Прослушайте аудио запись.</strong> Выберите правильный вариант из списка</div>
+                <div className="card-body" style={{display:displayInstruction ? 'none' : ''}}>
                   <img src={selectedBird.image} alt={selectedBird.name} className="bird-image" />
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item">
@@ -59,7 +64,7 @@ class Game extends Component {
                     </li>
                   </ul>
                 </div>
-                <span className="bird-description">
+                <span className="bird-description" style={{display:displayInstruction ? 'none' : ''}}>
                   {selectedBird.description}
                 </span>
 
@@ -80,6 +85,9 @@ const mapStateToProps = state => ({
   guessed: state.guessed,
   birdGroup: state.birdGroup,
   gameOver: state.gameOver,
+  score: state.score,
+  attemptCount: state.attemptCount
+
 });
 
 
@@ -100,4 +108,7 @@ Game.propTypes = {
   scoreUp: PropTypes.func.isRequired,
   nextLevel: PropTypes.func.isRequired,
   secretBird: PropTypes.objectOf(PropTypes.any).isRequired,
+  birdCategory: PropTypes.number.isRequired,
+  attemptCount:PropTypes.number.isRequired,
+  gameOver:PropTypes.bool.isRequired
 };
